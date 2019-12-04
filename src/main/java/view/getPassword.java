@@ -6,6 +6,7 @@
 package view;
 
 import controller.Login_Controller;
+import controller.Question_Controller;
 
 
 /**
@@ -95,7 +96,12 @@ public class getPassword extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             if(Log.passwordUser(this)){
-                new Question().setVisible(true);
+                String hey = Log.getQuestion(this);
+                String email = Log.getEmail(this);
+                Question question = new Question();
+                question.setEmail(email);
+                question.setQuestion(hey);
+                question.setVisible(true);
                 this.dispose();
             }
         } catch (Exception ex) {

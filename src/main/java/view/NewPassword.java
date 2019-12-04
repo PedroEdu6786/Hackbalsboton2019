@@ -5,11 +5,17 @@
  */
 package view;
 
+import controller.Login_Controller;
+import model.crud.UserCRUD;
+import model.schemas.User;
+
 /**
  *
  * @author Eduardo_Cruz
  */
 public class NewPassword extends javax.swing.JFrame {
+
+    Login_Controller Log = new Login_Controller();
 
     /**
      * Creates new form NewPassword
@@ -78,7 +84,18 @@ public class NewPassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
+        System.out.println(getEmail());
+        try{
+            
+            User userPass = new User();
+            UserCRUD updateUser = new UserCRUD();
+            userPass = Log.newPassword(this);
+            System.out.println(userPass);
+            updateUser.updateUser(userPass, getNewPassword());
+        }catch(Exception ex){
+            Log.showErrorNewPass(ex, this);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -122,6 +139,17 @@ public class NewPassword extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 
+    private String email;
     
+    public String getNewPassword(){
+        return jPasswordField1.getText();
+    }
+    
+    public void setEmail(String emailUser){
+        this.email = emailUser;
+    }
+    public String getEmail(){
+        return email;
+    }
 
 }

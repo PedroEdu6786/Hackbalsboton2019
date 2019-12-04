@@ -90,7 +90,10 @@ public class Question extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             if(Log.answerUser(this)){
-                new NewPassword().setVisible(true);
+                NewPassword newpass = new NewPassword();
+                newpass.setEmail(email);
+                System.out.println(newpass.getEmail());
+                newpass.setVisible(true);
                 this.dispose();
             }
       
@@ -139,9 +142,23 @@ public class Question extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-
+    private String email;
+    
+    public void setQuestion(String question){
+        jLabel1.setText(question);
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
     
     public String getAnswer(){
         return jTextField1.getText();
     }
+    
+    public String getEmail(){
+        return email;
+    }
+
+
 }
