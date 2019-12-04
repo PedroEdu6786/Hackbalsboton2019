@@ -182,19 +182,15 @@ add_user Reg = new add_user();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-    try {
-        Reg.nuevo_usuario(this);
-         Login Log=new Login();
-      Log
-              .setVisible(true);
-      this.dispose();
-    } catch (EmptyException ex) {
-        Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-
-
-       
+        try {
+            Reg.nuevo_usuario(this);
+            Login Log=new Login();
+            Log.setVisible(true);
+            this.dispose();
+        } catch (EmptyException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

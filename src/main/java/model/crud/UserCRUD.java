@@ -49,6 +49,20 @@ public class UserCRUD {
         return user;
     }
     
+    public User getAnswer(String answer){
+        EntityManager manager = EMFBootstrapper.openEntityManager();
+        User user = new User();
+        try {
+            user = (User) manager.createQuery("from User u where u.Answer='" + answer + "'").getSingleResult();
+        }
+        catch(PersistenceException e) {
+            throw e;
+        }
+
+        return user;
+        
+    }
+    
     public void deleteUser(String email){
         String delims = "[,]";
         String[] tokens = email.split(delims);

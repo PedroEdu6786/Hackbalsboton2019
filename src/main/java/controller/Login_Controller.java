@@ -12,8 +12,6 @@ import view.Question;
 import view.getPassword;
 
 public class Login_Controller {
-
-    private String questionUser;
     
     //Validates the input and send it to the model
     public Boolean LoginUser(Login view) throws EmptyException {
@@ -63,7 +61,6 @@ public class Login_Controller {
         {
             try{
                 user = model.getUser(data.get("email"));
-                questionUser = user.getQuestion();
                 validate = validateEmail(data, user, pass);
             }catch(Exception ex){
                 showErrorPass(ex, pass);
@@ -74,7 +71,9 @@ public class Login_Controller {
         return validate;
     }
 
-    public void answerUser(Question ques) throws EmptyException{
+    public Boolean answerUser(Question ques) throws EmptyException{
+        
+        Boolean validate = false;
         
         User user;
         
@@ -90,13 +89,15 @@ public class Login_Controller {
         else
         {
             try{
-                user = model.getUser(data.get("answer"));
-                validateAnswer(data, user, ques);
+                user = model.getAnswer(data.get("answer"));
+                validate = validateAnswer(data, user, ques);
             }catch(Exception ex){
                 showErrorAnswer(ex, ques);
             }
 
         }
+        
+        return validate;
     }
     
     //Verify the password
@@ -125,11 +126,17 @@ public class Login_Controller {
         return validateEmail;
     }
     
-    public void validateAnswer(Map<String,String> data, User user, Question view){
-        if(user.getEmail().equals(data.get("email"))){
+    public Boolean validateAnswer(Map<String,String> data, User user, Question view){
+        
+        Boolean validateAns = false;
+        
+        if(user.getAnswer().equals(data.get("answer"))){
             JOptionPane.showMessageDialog(
                     view, "Email success" , "Success", JOptionPane.INFORMATION_MESSAGE);
+            validateAns = true;
         }
+        
+        return validateAns;
     }
 
     //Display an OptionPane in the view with the error
@@ -185,9 +192,7 @@ public class Login_Controller {
         return isComplete;
     }
     
-    public String getUserQuestion(){
-        return questionUser;
-    }
+
 }
 
 
