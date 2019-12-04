@@ -23,7 +23,7 @@ public class Permission {
     public Permission() {
     }
 
-    public Permission(int id, String name, Group group, User user) {
+    public Permission(int id, String name, Room room, User user) {
         Id = id;
         Name = name;
         this.group = group;
