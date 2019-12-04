@@ -93,6 +93,9 @@ public class NewPassword extends javax.swing.JFrame {
             userPass = Log.newPassword(this);
             System.out.println(userPass);
             updateUser.updateUser(userPass, getNewPassword());
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
         }catch(Exception ex){
             Log.showErrorNewPass(ex, this);
         }
